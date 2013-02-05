@@ -1,0 +1,12 @@
+name: dart_mv
+author: Julien Castelain <jcastelain@gmail.com>
+
+description:
+  A minimalist "model view" implementation
+  in Dart.
+
+dependencies:
+  unittest: any
+  browser: any
+
+version: 0.0.1

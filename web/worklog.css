@@ -1,0 +1,33 @@
+
+body {
+  background-color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 15px;
+}
+
+h1, p {
+  color: #333;
+}
+
+#container {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.block {
+  clear: both;
+  display: block;
+  padding: 6px;
+
+}
+
+.green {
+  background: gold;
+  margin: 6px 0 4px 0;
+}
