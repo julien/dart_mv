@@ -3,18 +3,18 @@ import '../lib/dart_mv.dart';
 import 'views.dart';
 
 void main() {
-
   Model model = new Model();
-  model.on.change.add((e) {
-    print('model change: ${e.data}');
-  });
-  model.set('name', 'bob');
-  model.set('name', 'joe');
 
 
   Map viewOptions = new Map();
   viewOptions['el'] = query('#view-01');
-
+  viewOptions['model'] = model;
   ListView view = new ListView(viewOptions);
+
+  List<String> userList = [];
+  userList.add('bob');
+  userList.add('joe');
+
+  model.set('userList', userList);
 }
 
