@@ -5,7 +5,11 @@ abstract class BaseEvent implements Event {
   bool bubbles = false;
   bool cancelable = false;
   bool cancelBubble = false;
-  Clipboard clipboardData;
+
+// @deprecated
+// Clipboard clipboardData;
+  DataTransfer clipboardData;
+
   EventTarget currentTarget;
   bool defaultPrevented = false;
   int eventPhase;

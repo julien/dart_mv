@@ -25,11 +25,11 @@ class ListView extends View {
   }
 
   onSpanClick(e) {
-    print('ListView onSpanClick ${e.currentTarget}');
+    print('ListView onSpanClick: ${e.currentTarget}');
   }
 
   onModelChange(e) {
-    print('ListView onModelChange $e.data');
+    print('ListView onModelChange: ${e.data}');
     render();
   }
 

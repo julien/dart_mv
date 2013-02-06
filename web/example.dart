@@ -3,8 +3,17 @@ import '../lib/dart_mv.dart';
 import 'views.dart';
 
 void main() {
-  Model model = new Model();
 
+  onRouteChange(List<String> args) {
+    print('onRouteChanged: ${args.join(',')}');
+  };
+
+  Router router = new Router({
+    '(\\w+)(\\d+)?': onRouteChange
+  });
+
+
+  Model model = new Model();
 
   Map viewOptions = new Map();
   viewOptions['el'] = query('#view-01');

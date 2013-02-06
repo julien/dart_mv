@@ -16,9 +16,9 @@ void main() {
     }
 
 
-    test('models shoud dispatch event', () {
+    test('models shoud dispatch a "change" when attributes are set event', () {
       model.set('name', 'Dart');
-      expect(dispatched, equals(true));
+      expect(model.get('name'), equals('Dart'));
     });
   });
 
