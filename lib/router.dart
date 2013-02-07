@@ -3,16 +3,23 @@ part of dart_mv;
 class Router {
   Map<String, dynamic> _routes = new Map<String, dynamic>();
 
-  void _initialize() {
-    window.onHashChange.listen(onHashChange);
-  }
+  Function _initialize;
 
   Router([Map<String, dynamic> routes]) {
     if (?routes) {
       _routes = routes;
     }
-    _initialize();
+    window.onHashChange.listen(onHashChange);
   }
+
+  void set initialize(Function value) {
+    if (_initialize != value) {
+      _initialize = value;
+      _initialize();
+    }
+  }
+
+  Function get initialize => _initialize;
 
   get routes => _routes;
 

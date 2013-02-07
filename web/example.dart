@@ -1,29 +1,31 @@
 import 'dart:html';
-import '../lib/dart_mv.dart';
+import '../lib/dart_mv.dart' as mv;
 import 'views.dart';
 
-void main() {
 
-  onRouteChange(List<String> args) {
-    print('onRouteChanged: ${args.join(',')}');
-  };
+void onRouteChange(List<String> args) {
+  print('onRouteChanged: ${args.join(',')}');
+}
 
-  Router router = new Router({
-    '(\\w+)(\\d+)?': onRouteChange
+void initialize() {
+  // print('initializing app');
+  mv.Model model = new mv.Model();
+
+  ListView view = new ListView({
+    'el': query('#view-01'),
+    'model': model
   });
-
-
-  Model model = new Model();
-
-  Map viewOptions = new Map();
-  viewOptions['el'] = query('#view-01');
-  viewOptions['model'] = model;
-  ListView view = new ListView(viewOptions);
 
   List<String> userList = [];
   userList.add('bob');
   userList.add('joe');
-
   model.set('userList', userList);
+}
+
+void main() {
+  mv.Router router = new mv.Router({
+    '(\\w+)(\\d+)?': onRouteChange
+  });
+  router.initialize = initialize;
 }
 

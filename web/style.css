@@ -27,7 +27,16 @@ h1, p {
 
 }
 
-.green {
-  background: gold;
+.editing {
+  border: 3px solid gold;
+  border-radius: 12px;
   margin: 6px 0 4px 0;
+  outline: none;
+}
+
+.viewing {
+  border: 3px solid #ccc;
+  border-radius: 12px;
+  margin: 6px 0 4px 0;
+  outline: none;
 }
