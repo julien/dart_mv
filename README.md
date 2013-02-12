@@ -1,6 +1,8 @@
 dart mv
 ==========
 
+[![Build Status](https://drone.io/github.com/julien/dart_mv/status.png)](https://drone.io/github.com/julien/dart_mv/latest)
+
 [Dart](http://www.dartlang.org) Model/View implementation.
 
 A minimalist library that implements a Model and a View class.
