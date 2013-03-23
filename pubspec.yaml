@@ -5,8 +5,9 @@ description:
   A minimalist "model view" implementation
   in Dart.
 
+version: 0.0.2
 dependencies:
-  unittest: any
-  browser: any
+  unittest: ">=0.4.2 <0.4.3"
+  browser: ">=0.4.2 <0.4.3"
+  dart_events: ">=0.0.8 <0.0.9"
 
-version: 0.0.1

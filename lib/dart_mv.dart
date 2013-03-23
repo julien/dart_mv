@@ -1,8 +1,9 @@
 library dart_mv;
 
 import 'dart:html';
+import '../packages/dart_events/dart_events.dart';
 
-part 'events.dart';
+
 part 'models.dart';
 part 'views.dart';
 part 'router.dart';

@@ -1,40 +1,17 @@
 part of dart_mv;
 
-/// Events implementation
-class ModelEvent extends BaseEvent {
-  String type;
-  dynamic data;
 
-  ModelEvent(this.type,[this.data]);
-}
 
-class ModelEventListenerList extends BaseEventListenerList { }
-
-class ModelEvents extends BaseEvents {
-
-  ModelEventListenerList _change = new ModelEventListenerList();
-
-  EventListenerList operator [] (String type) {
-    if (type == 'change') return _change;
-
-    return new ModelEventListenerList();
-  }
-
-  ModelEventListenerList get change => _change;
-}
 
 /// Model implementation
-class Model {
+class Model extends EventEmitter {
   /// A map of attributes.
   Map _attributes = new Map();
 
-  /**
-   *  A ModelEvents instance allowing
-   *  to dispatch and listen for changes
-   */
-  ModelEvents on = new ModelEvents();
+
 
   Model([Map attributes]) {
+    // super();
     if (attributes != null) {
       _attributes = attributes;
     }
@@ -44,25 +21,26 @@ class Model {
 
   Model set(String key, dynamic value) {
 
-    ModelEvent event = new ModelEvent('change');
+    List<dynamic> data = [];
 
     if (_attributes.containsKey(key)) {
       _attributes[key] = value;
 
-      event.data = {
+      data.add({
         'key': key,
         'oldValue': get(key),
         'value': value
-      };
+      });
 
     } else {
-      event.data = {
+      data.add({
         'key': key,
         'value': value
-      };
+      });
     }
     _attributes[key] = value;
-    on.change.dispatch(event);
+
+    emit('change', data);
     return this;
   }
 
