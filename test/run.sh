@@ -13,7 +13,7 @@ echo "$results" | grep CONSOLE
 echo $results | grep 'unittest-suite-success' >/dev/null
 
 echo $results | grep -v 'Exception: Some tests failed.' >/dev/null
-echo 1
+exit 0
 #####
 # Type Analysis
 
