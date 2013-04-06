@@ -1,6 +1,9 @@
 part of dart_mv;
 
 class View {
+  /// A StreamController for this view
+  StreamController _streamCtrl = new StreamController();
+
   /// The default tag "name" for this view's element.
   const String DEFAULT_TAG = 'div';
 
@@ -69,6 +72,8 @@ class View {
    * Returns the model for this view.
    */
   Model get model => _model;
+
+  Stream get stream => _streamCtrl.stream;
 }
 
 

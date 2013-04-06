@@ -1,14 +1,13 @@
 part of dart_mv;
 
 
-
-
 /// Model implementation
-class Model extends EventEmitter {
+class Model extends StreamController {
+
+  StreamController _streamCtrl = new StreamController();
+
   /// A map of attributes.
   Map _attributes = new Map();
-
-
 
   Model([Map attributes]) {
     // super();
@@ -40,7 +39,9 @@ class Model extends EventEmitter {
     }
     _attributes[key] = value;
 
-    emit('change', data);
+
+    _streamCtrl.add(data);
+
     return this;
   }
 
@@ -52,4 +53,6 @@ class Model extends EventEmitter {
 
   /// [] Operator overloading.
   operator [](String key) => get(key);
+
+  Stream get onChange => _streamCtrl.stream;
 }
