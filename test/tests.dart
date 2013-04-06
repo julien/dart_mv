@@ -17,8 +17,6 @@ void main() {
       expect(model.get('name'), equals('Dart'));
       expect(dispatched, equals(true));
     });
-
-
   });
 
 }

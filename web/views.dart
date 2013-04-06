@@ -69,7 +69,7 @@ class ListView extends View {
   void initialize() {
     // Check Model existence and set up event listeners.
     if (model != null) {
-      model.on.change.add(onModelChange);
+      model.onChange.listen(onModelChange);
     }
   }
 }
