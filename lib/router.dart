@@ -1,44 +1,37 @@
 part of dart_mv;
 
 class Router {
-  Map<String, dynamic> _routes = new Map<String, dynamic>();
 
-  Function _initialize;
+  StreamController _streamCtrl = new StreamController.broadcast();
+  Map<String, dynamic> routes;
 
-  Router([Map<String, dynamic> routes]) {
-    if (?routes) {
-      _routes = routes;
-    }
+  Router([Map<String, dynamic> this.routes]) {
     window.onHashChange.listen(onHashChange);
   }
 
-  void set initialize(Function value) {
-    if (_initialize != value) {
-      _initialize = value;
-      _initialize();
-    }
-  }
-
-  Function get initialize => _initialize;
-
-  get routes => _routes;
-
-  onHashChange(e) {
-    String hash = window.location.hash;
+  void onHashChange(e) {
+    var hash, args, route, regexp;
+    hash = window.location.hash;
     hash = hash.slice(1);
-    List<String> args = new List<String>();
+    args = [];
 
-    for (String route in _routes.keys) {
-      RegExp regexp = new RegExp(route);
-      regexp.allMatches(hash).forEach((Match match) {
+    for (route in routes.keys) {
+      regexp = new RegExp(route);
+      
+      regexp.allMatches(hash).forEach((match) {
         args.add(match.str.substring(match.start, match.end));
       });
-      if (_routes[route] is Function) {
-        _routes[route](args);
+
+      _streamCtrl.add({ 'route': route, 'args': args });
+
+      if (routes[route] is Function) {
+        routes[route](args);
         return;
       }
     }
   }
+
+  Stream get stream => _streamCtrl.stream;
 }
 
 

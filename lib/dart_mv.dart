@@ -2,7 +2,7 @@ library dart_mv;
 
 import 'dart:async';
 import 'dart:html';
-// import '../packages/dart_events/dart_events.dart';
+import 'dart:json' as JSON;
 
 part 'models.dart';
 part 'views.dart';

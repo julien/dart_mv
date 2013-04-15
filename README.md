@@ -7,7 +7,10 @@ dart mv
 
 A minimalist library that implements a Model and a View class.
 
-A very basic example is provided in the "web" directory
+A basic example is provided in the "web" directory.
+
+**TODO**
+- Add command-line tests untill the test script is fixed for drone.io)
 
 *Soon available at the Dart [pub](http://pub.dartlang.org)*
 
