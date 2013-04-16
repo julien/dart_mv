@@ -37,7 +37,7 @@ class ListView extends View {
 
   void onSpanKeyDown(KeyboardEvent e) {
     var target, index, userList;
-    target = e.currentTarget;
+    target = e.currentTarget as Element;
     index = el.children.indexOf(target);
 
     if (e.keyCode == KeyCode.ENTER) {

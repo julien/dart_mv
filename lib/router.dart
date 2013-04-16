@@ -13,7 +13,7 @@ class Router {
   void onHashChange(e) {
     var hash, args, route, regexp;
     hash = window.location.hash;
-    hash = hash.slice(1);
+    hash = hash.substring(0, 1);
     args = [];
 
     for (route in routes.keys) {
