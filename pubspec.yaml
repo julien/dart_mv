@@ -8,6 +8,3 @@ version: 0.0.8
 dependencies:
   unittest: any
   browser: any
-
-environment:
-  sdk: "<=0.4.5"
