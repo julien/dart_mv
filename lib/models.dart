@@ -15,7 +15,7 @@ class Model {
     }
   }
   
-  Stream set(String key, dynamic value) {
+  Model set(String key, dynamic value) {
     var data;
 
     data = [];
@@ -36,7 +36,7 @@ class Model {
     _attributes[key] = value;
     
     _streamCtrl.add(data);
-    return stream;
+    return this;
   }
 
   get(String key) {
