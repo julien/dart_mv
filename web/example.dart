@@ -1,5 +1,6 @@
 import 'dart:html';
 import '../lib/dart_mv.dart' as mv;
+import '../lib/models.dart';
 import 'views.dart';
 
 void onRouteChange(List<String> args) {
@@ -16,12 +17,12 @@ void main() {
   // Can also listen for changes with Streams
   subscription = router.stream.listen(null);
   subscription.onData((value) {
-    print('onData: ${value}'); 
+    print('onData: ${value}');
   });
   subscription.onError((err) => print('value: ${err}'));
 
- 
-  model = new mv.Model();
+
+  model = new Model();
 
   view = new ListView({
     'el': query('#view-01'),
@@ -31,7 +32,7 @@ void main() {
   userList = [];
   userList.add('bob');
   userList.add('joe');
-  
+
   model.set('userList', userList);
 }
 

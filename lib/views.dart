@@ -5,7 +5,7 @@ class View {
   const String DEFAULT_TAG = 'div';
 
   StreamController _streamCtrl = new StreamController();
-  
+
   /// The options map, passed when initializing this view
   /// accepts an "el" and "tagName"
   /// property for now (will add more soon).
@@ -44,8 +44,8 @@ class View {
    *  This method should be overwritten in subclasses.
    *  This is where subclasses setup event listeners, etc...
    */
-  void initialize() {  
-    _streamCtrl.add({type: 'initialize'});  
+  void initialize() {
+    _streamCtrl.add({'type': 'initialize'});
   }
 
   Stream get stream => _streamCtrl.stream;

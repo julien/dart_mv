@@ -1,3 +1,4 @@
+library models;
 // part of dart_mv;
 import 'dart:async';
 import 'dart:json' as JSON;
@@ -14,7 +15,7 @@ class Model {
       _attributes = attributes;
     }
   }
-  
+
   Model set(String key, dynamic value) {
     var data;
 
@@ -23,9 +24,9 @@ class Model {
     if (_attributes.containsKey(key)) {
       // "Nulling" the value means removing the
       // attribute
-      if (value == null) { 
+      if (value == null) {
         _attributes.remove(key);
-        return;
+        return this;
       }
       data.add({'key': key, 'oldValue': get(key), 'value': value });
 
@@ -34,7 +35,7 @@ class Model {
     }
 
     _attributes[key] = value;
-    
+
     _streamCtrl.add(data);
     return this;
   }

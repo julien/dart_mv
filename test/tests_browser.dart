@@ -3,10 +3,11 @@ import '../packages/unittest/html_enhanced_config.dart';
 import 'dart:html';
 import 'dart:json' as JSON;
 import '../lib/dart_mv.dart';
+import '../lib/models.dart';
 
 void main() {
-  // useHtmlEnhancedConfiguration();
-  useHtmlInteractiveConfiguration();
+  useHtmlEnhancedConfiguration();
+  // useHtmlInteractiveConfiguration();
 
   group('mv.Model', () {
     var model;
@@ -14,10 +15,10 @@ void main() {
     model = new Model();
 
     test('broadcasts when attribute added', () {
-      var subscription = model.set('name', 'Dart').listen(null);
+      var subscription = model.stream.listen(null);
       subscription.onData((value) {
         var data = value[0];
-        
+
         expect(data.containsKey('key'), equals(true));
         expect(data['key'], equals('name'));
         expect(data.containsKey('value'), equals(true));
@@ -26,13 +27,14 @@ void main() {
         subscription.cancel();
       });
       subscription.onError((err) => print('Error :${err}'));
+      model.set('name', 'Dart');
     });
 
     test('broadcasts when attribute changes', () {
-      var subscription = model.set('name', 'DartLang').listen(null);
+      var subscription = model.stream.listen(null);
       subscription.onData((value) {
         var data = value[0];
-        
+
         expect(data.containsKey('key'), equals(true));
         expect(data['key'], equals('name'));
         expect(data.containsKey('value'), equals(true));
@@ -43,11 +45,12 @@ void main() {
         subscription.cancel();
       });
       subscription.onError((err) => print('Error :${err}'));
+      model.set('name', 'DartLang');
     });
 
     test('remove an attribute', () {
       model.set('name', null);
-      expect(model.get('name'), equals(null));    
+      expect(model.get('name'), equals(null));
     });
 
     test('should have [] operator', () {
