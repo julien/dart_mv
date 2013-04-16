@@ -5,7 +5,8 @@ import 'dart:json' as JSON;
 import '../lib/dart_mv.dart';
 
 void main() {
-  useHtmlEnhancedConfiguration();
+  // useHtmlEnhancedConfiguration();
+  useHtmlInteractiveConfiguration();
 
   group('mv.Model', () {
     var model;
@@ -22,7 +23,7 @@ void main() {
         expect(data.containsKey('value'), equals(true));
         expect(data['value'], equals('Dart'));
 
-        sub.cancel();
+        subscription.cancel();
       });
       subscription.onError((err) => print('Error :${err}'));
     });
@@ -39,7 +40,7 @@ void main() {
         expect(data.containsKey('oldValue'), equals(true));
         expect(data['oldValue'], equals('Dart'));
 
-        sub.cancel();
+        subscription.cancel();
       });
       subscription.onError((err) => print('Error :${err}'));
     });
