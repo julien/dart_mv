@@ -5,8 +5,7 @@ import 'dart:json' as JSON;
 import '../lib/dart_mv.dart';
 
 void main() {
-  useHtmlEnhancedConfiguration();
-  // useHtmlInteractiveConfiguration();
+  // useHtmlEnhancedConfiguration();
 
   group('mv.Model', () {
     var model;
