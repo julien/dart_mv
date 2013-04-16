@@ -4,7 +4,7 @@ description:
   A minimalist "model view" implementation
   in Dart.
 homepage: https://github.com/julien/dart_mv
-version: 0.0.8
+version: 0.0.9
 dependencies:
   unittest: any
   browser: any
