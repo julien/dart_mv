@@ -10,4 +10,4 @@ dependencies:
   browser: any
 
 environment:
-  sdk: "<=0.4.5.1"
+  sdk: "<=0.4.5"
