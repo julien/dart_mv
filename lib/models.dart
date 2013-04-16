@@ -1,7 +1,4 @@
-library models;
-// part of dart_mv;
-import 'dart:async';
-import 'dart:json' as JSON;
+part of dart_mv;
 
 class Model {
 

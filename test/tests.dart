@@ -3,7 +3,6 @@ import '../packages/unittest/html_enhanced_config.dart';
 import 'dart:html';
 import 'dart:json' as JSON;
 import '../lib/dart_mv.dart';
-import '../lib/models.dart';
 
 void main() {
   useHtmlEnhancedConfiguration();
