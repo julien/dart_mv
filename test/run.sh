@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dart tests_cli.dart
+dart test/tests_cli.dart
 
 # disabling since I can't get it to
 # work on drone.io
