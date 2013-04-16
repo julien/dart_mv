@@ -1,6 +1,5 @@
 import 'dart:html';
 import '../lib/dart_mv.dart' as mv;
-import '../lib/models.dart';
 import 'views.dart';
 
 void onRouteChange(List<String> args) {
@@ -22,7 +21,7 @@ void main() {
   subscription.onError((err) => print('value: ${err}'));
 
 
-  model = new Model();
+  model = new mv.Model();
 
   view = new ListView({
     'el': query('#view-01'),

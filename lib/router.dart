@@ -2,7 +2,8 @@ part of dart_mv;
 
 class Router {
 
-  StreamController _streamCtrl = new StreamController.broadcast();
+  StreamController _streamCtrl = new StreamController();
+
   Map<String, dynamic> routes;
 
   Router([Map<String, dynamic> this.routes]) {
@@ -17,7 +18,7 @@ class Router {
 
     for (route in routes.keys) {
       regexp = new RegExp(route);
-      
+
       regexp.allMatches(hash).forEach((match) {
         args.add(match.str.substring(match.start, match.end));
       });
@@ -31,7 +32,7 @@ class Router {
     }
   }
 
-  Stream get stream => _streamCtrl.stream;
+  Stream get stream => _streamCtrl.stream.asBroadcastStream();
 }
 
 

@@ -2,7 +2,7 @@ part of dart_mv;
 
 class Model {
 
-  StreamController _streamCtrl = new StreamController.broadcast();
+  StreamController _streamCtrl = new StreamController();
 
   /// A map of attributes.
   Map _attributes = new Map();
@@ -50,5 +50,5 @@ class Model {
 
   toJSON() => JSON.stringify(_attributes);
 
-  Stream get stream => _streamCtrl.stream;
+  Stream get stream => _streamCtrl.stream.asBroadcastStream();
 }

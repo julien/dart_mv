@@ -48,7 +48,7 @@ class View {
     _streamCtrl.add({'type': 'initialize'});
   }
 
-  Stream get stream => _streamCtrl.stream;
+  Stream get stream => _streamCtrl.stream.asBroadcastStream();
 }
 
 
