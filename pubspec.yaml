@@ -6,6 +6,6 @@ description:
 homepage: https://github.com/julien/dart_mv
 version: 0.0.8
 dependencies:
-  unittest: "any"
-  browser: "any"
+  unittest: any
+  browser: any
 
