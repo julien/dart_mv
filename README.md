@@ -13,18 +13,8 @@ Although the build status is "failing" since about two months,
 the tests pass in Dartium.
 
 **TODO**
-- Fix tests.
-  Passes in Chromium on Windows, OS X, Ubuntu.
-  Fails with DumpRenderTree on OSX/nix but passes on Windows.
-
-- Add more tests (View and Router currently aren't tested at all).
-
+- Add more tests.
 - Generate documentation.
-
-- Ideas:
-  The code is so "small" that each part could eventually
-  be used independently ... It might be wiser to isolate
-  each "part" into it's own library.
 
 *[Available](http://pub.dartlang.org/packages/dart_mv) at the Dart [pub](http://pub.dartlang.org)*
 
