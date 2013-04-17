@@ -24,6 +24,7 @@
         window.addEventListener('message', function (event) {
           console.log(event.data);
           if (event.data === 'unittest-suite-done') {
+            console.log('OK');
             testRunner.notifyDone();
           }
 
