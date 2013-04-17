@@ -1,11 +1,16 @@
 import '../packages/unittest/unittest.dart';
+
 import '../packages/unittest/html_enhanced_config.dart';
+//import '../packages/unittest/interactive_html_config.dart';
+
 import 'dart:html';
 import 'dart:json' as JSON;
 import '../lib/dart_mv.dart';
 
 void main() {
-//  useHtmlEnhancedConfiguration();
+
+  useHtmlEnhancedConfiguration();
+  //useInteractiveHtmlConfiguration();
 
   group('mv.Model', () {
     var model;
@@ -59,7 +64,8 @@ void main() {
     });
 
     test('should return attributes as JSON', () {
-      expect(model.toJSON(), equals('{"target":"Web","name":"DartLang"}'));
+      var m = new Model({'name': 'Dart'});
+      expect(m.toJSON(), equals('{"name":"Dart"}'));
     });
 
      test('remove all attributes', () {
