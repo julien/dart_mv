@@ -1,18 +1,13 @@
 import '../packages/unittest/unittest.dart';
-
 import '../packages/unittest/html_enhanced_config.dart';
-//import '../packages/unittest/interactive_html_config.dart';
-
 import 'dart:html';
 import 'dart:json' as JSON;
 import '../lib/dart_mv.dart';
 
 void main() {
-
   useHtmlEnhancedConfiguration();
-  //useInteractiveHtmlConfiguration();
 
-  group('mv.Model', () {
+  group('models', () {
     var model;
 
     model = new Model();
@@ -71,6 +66,31 @@ void main() {
      test('remove all attributes', () {
       model.reset();
       expect(model.toJSON(), equals('{}'));
+    });
+  });
+
+  group('views', () {
+    var view = new View();
+    
+    test('creates an element', () {
+      expect(view.el != null, equals(true));  
+    });     
+
+    test('element is an instance of DivElement', () {
+      expect(view.el is DivElement, equals(true));
+    });
+
+    test('element "tagName" is "div"', () {
+      expect(view.el.tagName.toLowerCase(), equals('div'));
+    });
+
+    test('broadcasts an "initialize" event', () {
+      var subscription = view.stream.listen(null), onData;
+      onData = (value) {
+        expect(value is Map, equals(true));
+        subscription.cancel();
+      };
+      subscription.onData(onData);
     });
 
   });
