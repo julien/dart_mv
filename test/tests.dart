@@ -13,32 +13,36 @@ void main() {
     model = new Model();
 
     test('broadcasts when attribute added', () {
-      var subscription = model.stream.listen(null);
-      subscription.onData((value) {
-        var data = value[0];
+      var subscription = model.on.listen(null);
+      subscription.onData((Map value) {
 
-        expect(data.containsKey('key'), equals(true));
-        expect(data['key'], equals('name'));
-        expect(data.containsKey('value'), equals(true));
-        expect(data['value'], equals('Dart'));
+
+        expect(value.containsKey('type'), equals(true));
+        expect(value['type'], equals('add'));
+        expect(value.containsKey('key'), equals(true));
+        expect(value['key'], equals('name'));
+        expect(value.containsKey('value'), equals(true));
+        expect(value['value'], equals('Dart'));
 
         subscription.cancel();
       });
+
       subscription.onError((err) => print('Error :${err}'));
       model.set('name', 'Dart');
     });
 
     test('broadcasts when attribute changes', () {
-      var subscription = model.stream.listen(null);
-      subscription.onData((value) {
-        var data = value[0];
 
-        expect(data.containsKey('key'), equals(true));
-        expect(data['key'], equals('name'));
-        expect(data.containsKey('value'), equals(true));
-        expect(data['value'], equals('DartLang'));
-        expect(data.containsKey('oldValue'), equals(true));
-        expect(data['oldValue'], equals('Dart'));
+      var subscription = model.on.listen(null);
+      subscription.onData((value) {
+        expect(value.containsKey('type'), equals(true));
+
+        expect(value.containsKey('key'), equals(true));
+        expect(value['key'], equals('name'));
+        expect(value.containsKey('value'), equals(true));
+        expect(value['value'], equals('DartLang'));
+        expect(value.containsKey('oldValue'), equals(true));
+        expect(value['oldValue'], equals('Dart'));
 
         subscription.cancel();
       });
@@ -60,21 +64,21 @@ void main() {
 
     test('should return attributes as JSON', () {
       var m = new Model({'name': 'Dart'});
-      expect(m.toJSON(), equals('{"name":"Dart"}'));
+      expect(m.toJson(), equals('{"name":"Dart"}'));
     });
 
      test('remove all attributes', () {
       model.reset();
-      expect(model.toJSON(), equals('{}'));
+      expect(model.toJson(), equals('{}'));
     });
   });
 
   group('views', () {
     var view = new View();
-    
+
     test('creates an element', () {
-      expect(view.el != null, equals(true));  
-    });     
+      expect(view.el != null, equals(true));
+    });
 
     test('element is an instance of DivElement', () {
       expect(view.el is DivElement, equals(true));
@@ -82,15 +86,6 @@ void main() {
 
     test('element "tagName" is "div"', () {
       expect(view.el.tagName.toLowerCase(), equals('div'));
-    });
-
-    test('broadcasts an "initialize" event', () {
-      var subscription = view.stream.listen(null), onData;
-      onData = (value) {
-        expect(value is Map, equals(true));
-        subscription.cancel();
-      };
-      subscription.onData(onData);
     });
 
   });

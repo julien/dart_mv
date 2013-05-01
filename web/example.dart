@@ -7,31 +7,33 @@ void onRouteChange(List<String> args) {
 }
 
 void main() {
-  var router, subscription, model, view, userList;
+  var router, subscription, model, view, dataList;
 
   router = new mv.Router({
     '(\\w+)(\\d+)?': onRouteChange
   });
 
   // Can also listen for changes with Streams
-  subscription = router.stream.listen(null);
+  subscription = router.on.listen(null);
   subscription.onData((value) {
     print('onData: ${value}');
   });
   subscription.onError((err) => print('value: ${err}'));
 
-
   model = new mv.Model();
 
-  view = new ListView({
-    'el': query('#view-01'),
-    'model': model
-  });
+  view = new ListView(
+    id: '#view-01',
+    data: model
+  );
 
-  userList = [];
-  userList.add('bob');
-  userList.add('joe');
+  dataList = [];
+  dataList.add('JavaScript');
+  dataList.add('Dart');
+  dataList.add('TypeScript');
+  dataList.add('CoffeeScript');
+  dataList.add('LiveScript');
 
-  model.set('userList', userList);
+  model.set('dataList', dataList);
 }
 

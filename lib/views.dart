@@ -1,54 +1,60 @@
 part of dart_mv;
 
 class View {
-  /// The default tag "name" for this view's element.
   const String DEFAULT_TAG = 'div';
 
-  StreamController _streamCtrl = new StreamController();
+  Element _el;
+  Streams _streams;
 
-  /// The options map, passed when initializing this view
-  /// accepts an "el" and "tagName"
-  /// property for now (will add more soon).
-  Map _options = new Map();
+  dynamic data;
 
-  Element el;
-  Model model;
-
-  /**
-   * Checks of our the passed "Element" exists, and
-   * if not creates a new one.
-   */
-  void _ensureElement([Element e]) {
-    var tag = _options.containsKey('tagName') ?
-        _options['tagName'] : DEFAULT_TAG;
-
-    el = (e is Element) ? e : new Element.tag(tag);
-  }
-
-  View([Map options]) {
-    if (?options) {
-      _options = options;
-    }
-    _options.containsKey('el') ?
-        _ensureElement(_options['el']) : _ensureElement();
-
-    if (_options.containsKey('model')) {
-      if (_options['model'] is Model) {
-        model = _options['model'];
+  Element _createElement([String id = '', String tagName = '', String className = '']) {
+    var tag;
+    if (id != null && query(id) != null) {
+      _el = query(id);
+    } else {
+      tag = (tagName == null) ? DEFAULT_TAG : tagName;
+      _el = new Element.tag(tag);
+      if (className != null) {
+        _el.classes.add(className);
       }
     }
-    initialize();
+    return _el;
   }
 
-  /**
-   *  This method should be overwritten in subclasses.
-   *  This is where subclasses setup event listeners, etc...
-   */
-  void initialize() {
-    _streamCtrl.add({'type': 'initialize'});
+  View({String id, String tagName, String className, dynamic this.data, String html}) {
+    _createElement(id, tagName, className);
+
+    if (html != null) {
+      template(html);
+    }
+    _streams = new Streams();
   }
 
-  Stream get stream => _streamCtrl.stream.asBroadcastStream();
+  View template(String html) {
+    var element, fragment;
+    element = new Element.html(html);
+    fragment = document.createDocumentFragment();
+    _el.append(fragment.append(element));
+    return this;
+  }
+
+  /// Wrapper methods for the underlying [Element]
+  /// might be removed ...
+  void appendTo(Element parent) {
+    var fragment;
+    if (!document.body.contains(_el)) {
+      fragment = document.createDocumentFragment();
+      fragment.append(_el);
+      parent.append(fragment);
+    }
+  }
+
+  void remove() {
+    _el.remove();
+  }
+
+  Element get el => _el;
+  Streams get streams => _streams;
 }
-
 

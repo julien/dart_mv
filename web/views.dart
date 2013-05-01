@@ -4,19 +4,27 @@ import 'dart:html';
 import '../lib/dart_mv.dart';
 
 class ListView extends View {
-  ListView([Map options]) : super(options);
+
+  Model model;
+
+  ListView({String id, dynamic data}) : super(id: id) {
+    model = data as Model;
+    if (model != null) {
+      model.on.listen((e) => render());
+    }
+  }
 
   void render() {
-    var userList, name, span;
+    var dataList, name, span;
 
     if (model != null) {
       el.innerHtml = '';
 
-      if (model.get('userList') != null) {
+      if (model.get('dataList') != null) {
 
-        userList = model.get('userList');
+        dataList = model.get('dataList');
 
-        for (name in userList) {
+        for (name in dataList) {
           span = new Element.html('<span>${name}</span>')
             ..classes.add('block')
             ..classes.add('viewing')
@@ -62,15 +70,5 @@ class ListView extends View {
     }
   }
 
-  void onModelChange(e) {
-    render();
-  }
-
-  void initialize() {
-    // Check Model existence and set up event listeners.
-    if (model != null) {
-      model.stream.listen(onModelChange);
-    }
-  }
 }
 

@@ -2,11 +2,13 @@ part of dart_mv;
 
 class Router {
 
-  StreamController _streamCtrl = new StreamController();
+  Streams _streams;
 
   Map<String, dynamic> routes;
 
   Router([Map<String, dynamic> this.routes]) {
+    _streams = new Streams();
+
     window.onHashChange.listen(onHashChange);
   }
 
@@ -23,7 +25,7 @@ class Router {
         args.add(match.str.substring(match.start, match.end));
       });
 
-      _streamCtrl.add({ 'route': route, 'args': args });
+      _streams.add({ 'type:': 'change', 'route': route, 'args': args });
 
       if (routes[route] is Function) {
         routes[route](args);
@@ -32,7 +34,7 @@ class Router {
     }
   }
 
-  Stream get stream => _streamCtrl.stream.asBroadcastStream();
+  Stream<Map> get on => _streams.on;
 }
 
 
