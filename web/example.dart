@@ -14,9 +14,8 @@ void main() {
   });
 
   // Can also listen for changes with Streams
-  subscription = router.on.listen(null);
-  subscription.onData((value) {
-    print('onData: ${value}');
+  subscription = router.on('change').listen((value) {
+    print('router onChange: ${value}');
   });
   subscription.onError((err) => print('value: ${err}'));
 

@@ -2,14 +2,14 @@ part of dart_mv;
 
 class Model {
 
-  Streams _streams;
+  EventEmitter _emitter;
 
   /// A map of attributes.
   Map _attributes = new Map();
 
   Model([Map attributes]) {
 
-    _streams = new Streams();
+    _emitter = new EventEmitter();
 
     if (attributes != null) {
       _attributes = new Map.from(attributes);
@@ -18,7 +18,7 @@ class Model {
   }
 
   Model set(String key, dynamic value) {
-    var data;
+    var data, type;
 
     data = {};
 
@@ -27,21 +27,23 @@ class Model {
       // attribute
       if (value == null) {
         _attributes.remove(key);
-        data = {'type': 'remove', 'key': key, 'value': value };
-        _streams.add(data);
+        data = {'key': key, 'value': value };
+        _emitter.on('remove', data);
         return this;
       }
 
       if (_attributes[key] != value) {
-        data = {'type': 'change', 'key': key, 'oldValue': get(key), 'value': value };
+        data = {'key': key, 'oldValue': get(key), 'value': value };
+        type = 'change';
       }
 
     } else {
-      data = {'type': 'add', 'key': key, 'value': value };
+      data = {'key': key, 'value': value };
+      type = 'add';
     }
 
     _attributes[key] = value;
-    _streams.add(data);
+    _emitter.publish(type, data);
     return this;
   }
 
@@ -75,5 +77,6 @@ class Model {
 
   Map<String, dynamic> get attributes => _attributes;
 
-  Stream<Map> get on => _streams.on;
+  Stream on(String name) => _emitter.on(name);
+
 }

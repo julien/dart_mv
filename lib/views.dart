@@ -4,7 +4,7 @@ class View {
   const String DEFAULT_TAG = 'div';
 
   Element _el;
-  Streams _streams;
+  EventEmitter _emitter;
 
   dynamic data;
 
@@ -28,7 +28,7 @@ class View {
     if (html != null) {
       template(html);
     }
-    _streams = new Streams();
+    _emitter = new EventEmitter();
   }
 
   View template(String html) {
@@ -55,6 +55,6 @@ class View {
   }
 
   Element get el => _el;
-  Streams get streams => _streams;
+  Stream get emitter => _emitter;
 }
 

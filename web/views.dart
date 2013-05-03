@@ -10,7 +10,8 @@ class ListView extends View {
   ListView({String id, dynamic data}) : super(id: id) {
     model = data as Model;
     if (model != null) {
-      model.on.listen((e) => render());
+      model.on('add').listen((e) => render());
+      model.on('change').listen((e) => render());
     }
   }
 

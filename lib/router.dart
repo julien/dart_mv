@@ -2,13 +2,12 @@ part of dart_mv;
 
 class Router {
 
-  Streams _streams;
+  EventEmitter _emitter;
 
   Map<String, dynamic> routes;
 
   Router([Map<String, dynamic> this.routes]) {
-    _streams = new Streams();
-
+    _emitter = new EventEmitter();
     window.onHashChange.listen(onHashChange);
   }
 
@@ -25,7 +24,7 @@ class Router {
         args.add(match.str.substring(match.start, match.end));
       });
 
-      _streams.add({ 'type:': 'change', 'route': route, 'args': args });
+      _emitter.publish('change', {'route': route, 'args': args });
 
       if (routes[route] is Function) {
         routes[route](args);
@@ -34,7 +33,7 @@ class Router {
     }
   }
 
-  Stream<Map> get on => _streams.on;
+  Stream on(String name) => _emitter.on(name);
 }
 
 
