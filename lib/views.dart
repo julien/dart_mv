@@ -55,6 +55,6 @@ class View {
   }
 
   Element get el => _el;
-  Stream get emitter => _emitter;
+  EventEmitter get emitter => _emitter;
 }
 

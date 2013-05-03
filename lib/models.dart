@@ -28,7 +28,7 @@ class Model {
       if (value == null) {
         _attributes.remove(key);
         data = {'key': key, 'value': value };
-        _emitter.on('remove', data);
+        _emitter.publish('remove', data);
         return this;
       }
 
