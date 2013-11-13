@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 .DS_Store
 .localized
+=======
+packages
+*.DS_Store
+*.lock
+>>>>>>> 6e88c49e82d5f5429c2904625f6779b0b797c530
