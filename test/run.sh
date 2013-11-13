@@ -32,28 +32,24 @@ fi
 echo
 echo "dartanalyzer lib/*.dart"
 
-dartanalyzer lib/hipster_collection.dart
+dartanalyzer lib/eventemitter.dart
 if [[ $? != 0 ]]; then
   exit 1
 fi
 
-dartanalyzer lib/hipster_history.dart
+dartanalyzer lib/models.dart
 if [[ $? != 0 ]]; then
   exit 1
 fi
 
-dartanalyzer lib/hipster_model.dart
+dartanalyzer lib/router.dart
 if [[ $? != 0 ]]; then
   exit 1
 fi
 
-dartanalyzer lib/hipster_router.dart
+dartanalyzer lib/views.dart
 if [[ $? != 0 ]]; then
   exit 1
 fi
 
-dartanalyzer lib/hipster_view.dart
-if [[ $? != 0 ]]; then
-  exit 1
-fi
 
