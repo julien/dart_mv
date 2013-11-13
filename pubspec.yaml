@@ -12,5 +12,5 @@ environment:
 dependencies:
   unittest: "0.9.0"
   browser: ">=0.9.0 < 0.10.0"
-
+  plummbur_kruk: any
 
